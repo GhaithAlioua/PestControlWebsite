@@ -1,0 +1,34 @@
+---
+// No imports as of yet.
+---
+
+<nav class="bg-white h-28 flex items-center justify-between pr-20">
+    <a href="/">
+        <img class="h-20 w-42 pl-24" src="/favicon.png" alt="Logo" />
+    </a>
+    <div class="space-x-4">
+        <a id="homeLink" class="no-underline hover:text-green-500" href="/">Home</a>
+        <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">Services</a>
+        <a id="pestsLink" class="no-underline hover:text-green-500" href="/pests">Pests</a>
+        <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">Blogs</a>
+        <a id="contactLink" class="no-underline hover:text-green-500" href="/contact">Contact Us</a>
+        <a id="aboutLink" class="no-underline hover:text-green-500" href="/about">About Us</a>
+        <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
+    </div>
+</nav>
+
+<script>
+    const links = {
+        '/': document.getElementById('homeLink'),
+        '/services': document.getElementById('servicesLink'),
+        '/pests': document.getElementById('pestsLink'),
+        '/blogs': document.getElementById('blogsLink'),
+        '/contact': document.getElementById('contactLink'),
+        '/about': document.getElementById('aboutLink'),
+        '/404': document.getElementById('404Link')
+    }
+    const activeLink = links[window.location.pathname];
+    if(activeLink){
+        activeLink.classList.add('text-green-500');
+    }
+</script>

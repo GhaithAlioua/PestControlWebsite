@@ -1,0 +1,22 @@
+---
+// Import the Navbar component
+import Navbar from '../components/Navbar/navbar.astro'
+// Define a default title
+let title = Astro.props.title ?? 'PestControl'
+// Define whether navbar appears for a page or not
+let showNavbar = Astro.props.showNavbar ?? true;
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+</head>
+<body class="bg-gray-400">
+  {showNavbar && <Navbar />} <!-- Confitionally render the Navbar -->
+  <slot /> <!-- This is where the content of your pages will be injected -->
+</body>
+</html>
+
+
