@@ -1,8 +1,8 @@
 ---
 // Imports
 import Navbar from '../components/Navbar/navbar.astro'
-// import ChatButton from '../components/chatButton.astro'
 import PageUpButton from '../components/pageUpButton.astro'
+// import HamburgerButton from '../components/hamburgerMenu.astro'
 
 // Define a default title
 let title = Astro.props.title ?? 'PestControl'
@@ -19,6 +19,7 @@ let showNavbar = Astro.props.showNavbar ?? true;
   </head>
 <body class="bg-black">
   {showNavbar && <Navbar />} <!-- Conditionally render the Navbar -->
+  <!-- <HamburgerButton /> -->
   <slot /> <!-- This is where the content of your pages will be injected -->
   <!-- <ChatButton /> -->
   <PageUpButton />

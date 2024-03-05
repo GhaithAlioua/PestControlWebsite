@@ -1,9 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
-let title = 'PestControl | 404';
+import image404 from '../assets/404img.png'
+let title = 'PestControl | 404 Page Not Found';
 ---
 
-<Layout title={title} showNavbar={true}>
-    <!-- Your page content goes here -->
-    <h1>404</h1>
-</Layout>
+<style>
+    .animated-button:hover::after {
+        @apply w-full;
+    }
+
+    .animated-button::after {
+        content: '';
+        @apply absolute top-0 left-0 w-0 h-full bg-green-500 transition-all duration-500 z-10;
+    }
+
+    .animated-button span {
+        @apply relative z-20;
+    }
+</style>
+
+<div class="bg-white min-h-screen flex items-center justify-center flex-col">
+    <Layout title={title} showNavbar={false}>
+        <img src={image404.src} alt="404" class="w-1/3 h-auto"/>
+        <a href="/" class="animated-button relative overflow-hidden mt-5 text-gray-800 no-underline text-lg font-bold border-2 border-gray-800 py-2 px-4 rounded">
+            <span>Go back to home page</span>
+        </a>
+    </Layout>
+</div>

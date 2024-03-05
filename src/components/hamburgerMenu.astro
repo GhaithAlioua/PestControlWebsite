@@ -1,0 +1,23 @@
+<!-- ---
+// No imports as of yet.
+---
+
+<button id="hamburgerButton" class="lg:hidden block">
+    <i class="fas fa-bars"></i>
+</button>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerButton = document.getElementById('hamburgerButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburgerButton.addEventListener('click', function() {
+        if (mobileMenu.style.display === "none") {
+            mobileMenu.style.display = "block";
+        } else {
+            mobileMenu.style.display = "none";
+        }
+    });
+});
+</script> -->
