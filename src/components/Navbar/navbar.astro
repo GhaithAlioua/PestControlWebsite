@@ -2,17 +2,17 @@
 // No imports as of yet.
 ---
 
-<nav class="bg-white h-28 flex items-center justify-between pr-20">
+<nav id="navbar" class="bg-white h-28 flex items-center justify-between pr-20 sticky top-0 z-50 transition-all duration-500">
     <a href="/">
-        <img class="h-20 w-42 pl-24" src="/favicon.png" alt="Logo" />
+        <img id="logo" class="h-20 w-42 pl-12 transition-all duration-500" src="/favicon.png" alt="Logo" />
     </a>
     <div class="space-x-4">
         <a id="homeLink" class="no-underline hover:text-green-500" href="/">Home</a>
         <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">Services</a>
-        <a id="pestsLink" class="no-underline hover:text-green-500" href="/pests">Pests</a>
+        <a id="pestsLink" class="no-underline hover:text-green-500" href="/pest-library">Pests</a>
         <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">Blogs</a>
-        <a id="contactLink" class="no-underline hover:text-green-500" href="/contact">Contact Us</a>
-        <a id="aboutLink" class="no-underline hover:text-green-500" href="/about">About Us</a>
+        <a id="aboutLink" class="no-underline hover:text-green-500" href="/about-us">About Us</a>
+        <a id="contactLink" class="no-underline hover:text-green-500" href="/contact-us">Contact Us</a>
         <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
     </div>
 </nav>
@@ -31,4 +31,20 @@
     if(activeLink){
         activeLink.classList.add('text-green-500');
     }
+
+    const navbar = document.getElementById('navbar');
+    const logo = document.getElementById('logo');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('h-20');
+            navbar.classList.remove('h-28');
+            logo.classList.add('h-16', 'w-34');
+            logo.classList.remove('h-20', 'w-42');
+        } else {
+            navbar.classList.remove('h-20');
+            navbar.classList.add('h-28');
+            logo.classList.remove('h-16', 'w-34');
+            logo.classList.add('h-20', 'w-42');
+        }
+    });
 </script>

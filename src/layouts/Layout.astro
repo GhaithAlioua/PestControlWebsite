@@ -1,6 +1,9 @@
 ---
-// Import the Navbar component
+// Imports
 import Navbar from '../components/Navbar/navbar.astro'
+// import ChatButton from '../components/chatButton.astro'
+import PageUpButton from '../components/pageUpButton.astro'
+
 // Define a default title
 let title = Astro.props.title ?? 'PestControl'
 // Define whether navbar appears for a page or not
@@ -12,11 +15,12 @@ let showNavbar = Astro.props.showNavbar ?? true;
 <head>
     <title>{title}</title>
     <link rel="icon" href="/favicon.png" type="image/png" />
-</head>
-<body class="bg-gray-400">
-  {showNavbar && <Navbar />} <!-- Confitionally render the Navbar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+<body class="bg-black">
+  {showNavbar && <Navbar />} <!-- Conditionally render the Navbar -->
   <slot /> <!-- This is where the content of your pages will be injected -->
+  <!-- <ChatButton /> -->
+  <PageUpButton />
 </body>
 </html>
-
-

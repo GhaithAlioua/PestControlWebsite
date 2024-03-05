@@ -1,0 +1,33 @@
+---
+// No imports as of yet.
+---
+
+<button id="pageUpButton" class="fixed bottom-10 right-6 bg-green-500 text-white font-bold py-2 px-3 rounded-full opacity-0 transition-opacity duration-500" style="visibility: hidden;">
+    <i class="fas fa-arrow-up fa-lg"></i>
+</button>
+
+<style>
+#pageUpButton {
+    transition: opacity 0.5s;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const pageUpButton = document.getElementById('pageUpButton');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+            pageUpButton.style.visibility = 'visible';
+            pageUpButton.style.opacity = '1';
+        } else {
+            pageUpButton.style.visibility = 'hidden';
+            pageUpButton.style.opacity = '0';
+        }
+    });
+
+    pageUpButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+</script>
