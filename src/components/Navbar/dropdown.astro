@@ -1,8 +1,32 @@
-<div class="dropdown">
-    <button class="dropbtn" id="dropdownButton">Dropdown</button>
-    <div class="dropdown-content" id="dropdownContent">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-    </div>
+<!-- ---
+let { items = [] } = Astro.props;
+---
+
+<div class="dropdown-content">
+    <a href="/services">All Services</a>
+    {items.map(item => (
+        <a href={item.href}>{item.text}</a>
+    ))}
 </div>
+
+<style>
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        z-index: 1;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+</style> -->
