@@ -1,22 +1,43 @@
 ---
+import { US } from 'country-flag-icons/react/3x2'
+import { AE } from 'country-flag-icons/react/3x2'
 ---
 
 <style>
+    #languageLink {
+        cursor: pointer;
+    }
     .font-roboto {
       font-family: 'Roboto', sans-serif;
     }
+
+    .language-dropdown {
+        min-width: 80px !important;
+        padding: 2px 8px !important;
+    }
+
+    .language-option {
+        display: flex;
+        align-items: center;
+    }
+
+    .language-text {
+        margin-right: 2px;
+    }
+
     .dropdown-content {
         display: none;
         position: absolute;
         left: 0;
         background-color: #ffffff;
         min-width: 180px;
-        padding: 5px 10px; /* Reduced padding here */
+        padding: 5px 10px;
         box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
         border-radius: 4px;
         z-index: 1;
         transition: all 0.3s ease-in-out;
     }
+
     .dropdown-content .dropdown-link {
         color: #333333;
         text-decoration: none;
@@ -34,11 +55,25 @@
 
     .fa-caret-down {
         transition: transform 0.3s ease-in-out;
-        margin-left: 0px;
+        margin-left: 1px;
     }
 
     .dropdown:hover .fa-caret-down {
         transform: rotate(180deg);
+    }
+
+    .flag-icon {
+        height: 15px; /* adjust as needed */
+        width: 25px; /* adjust as needed */
+        margin-right: 2px;
+    }
+
+    .dropdown-link {
+        color: #333333;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+        cursor: pointer; /* Add this line */
     }
 </style>
 
@@ -60,6 +95,20 @@
         <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">BLOGS</a>
         <a id="contactLink" class="no-underline hover:text-green-500" href="/contact-us">CONTACT</a>
         <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
+        <div class="dropdown relative">
+            <a id="languageLink" class="no-underline hover:text-green-500">
+                <span class="language-option">
+                    <US className="flag-icon" /> <span class="language-text">English</span> <i class="fas fa-caret-down"></i>
+                </span>
+            </a>
+            <div class="dropdown-content language-dropdown">
+                <a class="dropdown-link" onclick="changeLanguage(event, 'Arabic')">
+                    <span class="language-option">
+                        <AE className="flag-icon" /> <span class="language-text">Arabic</span>
+                    </span>
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -93,4 +142,20 @@
             logo.classList.add('h-20', 'w-42');
         }
     });
+
+    let currentLanguage = 'English';
+    function changeLanguage(event, language) {
+        event.preventDefault();
+        const languageLinkText = document.querySelector('#languageLink .language-text');
+        const dropdownLinkText = document.querySelector('.dropdown-link .language-text');
+
+        // Swap the languages
+        const temp = currentLanguage;
+        currentLanguage = language;
+        language = temp;
+
+        // Update the text of the links
+        languageLinkText.textContent = currentLanguage;
+        dropdownLinkText.textContent = language;
+    }
 </script>
