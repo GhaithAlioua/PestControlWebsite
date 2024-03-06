@@ -1,11 +1,44 @@
 ---
-import Dropdown from './dropdown.astro';
 ---
 
 <style>
-    #navbar a{
-        font-family: 'Roboto', sans-serif;
-        font-size: 14px;
+    .font-roboto {
+      font-family: 'Roboto', sans-serif;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 0;
+        background-color: #ffffff;
+        min-width: 180px;
+        padding: 5px 10px; /* Reduced padding here */
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        z-index: 1;
+        transition: all 0.3s ease-in-out;
+    }
+    .dropdown-content .dropdown-link {
+        color: #333333;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+    }
+
+    .dropdown-content .dropdown-link:hover {
+        color: #4CAF50;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .fa-caret-down {
+        transition: transform 0.3s ease-in-out;
+        margin-left: 0px;
+    }
+
+    .dropdown:hover .fa-caret-down {
+        transform: rotate(180deg);
     }
 </style>
 
@@ -13,10 +46,16 @@ import Dropdown from './dropdown.astro';
     <a href="/">
         <img id="logo" class="h-20 w-42 pl-12 transition-all duration-500" src="/favicon.png" alt="Logo" />
     </a>
-    <div class="space-x-4">
+    <div class="space-x-6 flex font-roboto"> <!-- Add 'flex' here -->
         <a id="homeLink" class="no-underline hover:text-green-500" href="/">HOME</a>
         <a id="aboutLink" class="no-underline hover:text-green-500" href="/about-us">ABOUT</a>
-        <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">SERVICES</a>
+        <div class="dropdown relative">
+            <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">SERVICES <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+                <a class="dropdown-link" href="/pest-control-services">Pest Control Services</a>
+                <a class="dropdown-link" href="/disinfection-services">Disinfection Services</a>
+            </div>
+        </div>
         <a id="pestsLink" class="no-underline hover:text-green-500" href="/pest-library">PESTS</a>
         <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">BLOGS</a>
         <a id="contactLink" class="no-underline hover:text-green-500" href="/contact-us">CONTACT</a>
