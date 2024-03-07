@@ -75,26 +75,81 @@ import { AE } from 'country-flag-icons/react/3x2'
         padding: 10px 0;
         cursor: pointer; /* Add this line */
     }
+
+
+
+    /* Responsive Navbar Design */
+    /* CSS for the new containers */
+    #hamburger-container, #language-container {
+        display: flex;
+    }
+
+    /* Responsive Navbar Design */
+    @media (max-width: 1024px) {
+        #navbar-items {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            padding: 1rem;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #navbar-items.show {
+            display: flex;
+        }
+
+        #language-container {
+            justify-content: flex-end;
+        }
+
+        /* Reverse the order of the containers */
+        #small-screen-container {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+    @media (max-width: 640px) { /* Adjust this value as needed */
+        #language-items {
+            width: 100%;
+            justify-content: space-between;
+            order: 1; /* Change the order to 1 */
+        }
+
+        #hamburger {
+            order: 2; /* Change the order to 2 */
+        }
+    }
+    
+    #small-screen-container {
+        flex-direction: column;
+    }
+
 </style>
 
 <nav id="navbar" class="bg-white h-28 flex items-center justify-between pr-20 sticky top-0 z-50 transition-all duration-500">
     <a href="/">
         <img id="logo" class="h-20 w-42 pl-12 transition-all duration-500" src="/favicon.png" alt="Logo" />
     </a>
-    <div class="space-x-6 flex font-roboto"> <!-- Add 'flex' here -->
-        <a id="homeLink" class="no-underline hover:text-green-500" href="/">HOME</a>
-        <a id="aboutLink" class="no-underline hover:text-green-500" href="/about-us">ABOUT</a>
-        <div class="dropdown relative">
-            <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">SERVICES <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-content">
-                <a class="dropdown-link" href="/pest-control-services">Pest Control Services</a>
-                <a class="dropdown-link" href="/disinfection-services">Disinfection Services</a>
+    <div id="navbar-items" class="flex space-x-6">
+        <div class="space-x-6 flex font-roboto"> <!-- Add 'flex' here -->
+            <a id="homeLink" class="no-underline hover:text-green-500" href="/">HOME</a>
+            <a id="aboutLink" class="no-underline hover:text-green-500" href="/about-us">ABOUT</a>
+            <div class="dropdown relative">
+                <a id="servicesLink" class="no-underline hover:text-green-500" href="/services">SERVICES <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a class="dropdown-link" href="/pest-control-services">Pest Control Services</a>
+                    <a class="dropdown-link" href="/disinfection-services">Disinfection Services</a>
+                </div>
             </div>
+            <a id="pestsLink" class="no-underline hover:text-green-500" href="/pest-library">PESTS</a>
+            <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">BLOGS</a>
+            <a id="contactLink" class="no-underline hover:text-green-500" href="/contact-us">CONTACT</a>
+            <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
         </div>
-        <a id="pestsLink" class="no-underline hover:text-green-500" href="/pest-library">PESTS</a>
-        <a id="blogsLink" class="no-underline hover:text-green-500" href="/blogs">BLOGS</a>
-        <a id="contactLink" class="no-underline hover:text-green-500" href="/contact-us">CONTACT</a>
-        <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
+    </div>
+    <div class="hidden lg:flex items-center" id="language-container">
         <div class="dropdown relative">
             <a id="languageLink" class="no-underline hover:text-green-500">
                 <span class="language-option">
@@ -109,6 +164,15 @@ import { AE } from 'country-flag-icons/react/3x2'
                 </a>
             </div>
         </div>
+
+
+    <div class="md:flex lg:hidden flex-row items-center" id="small-screen-container">
+        <!-- Hamburger button -->
+        <button id="hamburger" class="focus:outline-none ml-4" onclick="toggleNavbar()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </div>
 </nav>
 
@@ -157,5 +221,11 @@ import { AE } from 'country-flag-icons/react/3x2'
         // Update the text of the links
         languageLinkText.textContent = currentLanguage;
         dropdownLinkText.textContent = language;
+    }
+
+
+    function toggleNavbar() {
+        const navbarItems = document.getElementById('navbar-items');
+        navbarItems.classList.toggle('show');
     }
 </script>
