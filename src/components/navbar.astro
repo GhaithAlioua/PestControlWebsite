@@ -169,7 +169,7 @@ import { AE } from 'country-flag-icons/react/3x2'
     <a href="/">
         <img id="logo" class="h-20 w-42 pl-12 transition-all duration-500" src="/favicon.png" alt="Logo" />
     </a>
-    <div id="navbar-items" class="flex space-x-6">
+    <div id="navbar-items" class="flex space-x-6 font-roboto">
         <div class="space-x-6 flex font-roboto"> <!-- Add 'flex' here -->
             <a id="homeLink" class="no-underline hover:text-green-500" href="/">HOME</a>
             <a id="aboutLink" class="no-underline hover:text-green-500" href="/about-us">ABOUT</a>
@@ -186,7 +186,8 @@ import { AE } from 'country-flag-icons/react/3x2'
             <a id="404Link" class="no-underline hover:text-green-500" href="/404">404</a>
         </div>
     </div>
-    <div class="hidden lg:flex items-center" id="language-container">
+
+    <div id="language-container" class="hidden lg:flex items-center font-roboto">
         <div class="dropdown relative">
             <a id="languageLink" class="no-underline hover:text-green-500">
                 <span class="language-option">
@@ -201,15 +202,14 @@ import { AE } from 'country-flag-icons/react/3x2'
                 </a>
             </div>
         </div>
-
-
-    <div class="md:flex lg:hidden flex-row items-center" id="small-screen-container">
-        <!-- Hamburger button -->
-        <button id="hamburger" class="focus:outline-none ml-4" onclick="toggleNavbar()">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
+        <div class="md:flex lg:hidden flex-row items-center" id="small-screen-container">
+            <!-- Hamburger button -->
+            <button id="hamburger" class="focus:outline-none ml-4" onclick="toggleNavbar()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -240,28 +240,6 @@ import { AE } from 'country-flag-icons/react/3x2'
         }
     });
 
-    const languageManager = (() => {
-        let currentLanguage = 'English';
-
-        return {
-            changeLanguage: (event, language) => {
-                event.preventDefault();
-                const languageLinkText = document.querySelector('#languageLink .language-text');
-                const dropdownLinkText = document.querySelector('.dropdown-link .language-text');
-
-                // Swap the languages
-                const temp = currentLanguage;
-                currentLanguage = language;
-                language = temp;
-
-                // Update the text of the links
-                languageLinkText.textContent = currentLanguage;
-                dropdownLinkText.textContent = language;
-            },
-            getCurrentLanguage: () => currentLanguage
-        };
-    })();
-
     document.getElementById('navbar-items').addEventListener('click', (event) => {
         const target = event.target as Element;
         if (target.tagName === 'A') {
@@ -271,9 +249,5 @@ import { AE } from 'country-flag-icons/react/3x2'
             }
             target.classList.add('active-link');
         }
-    });
-
-    document.getElementById('hamburger').addEventListener('click', () => {
-        document.getElementById('navbar-items').classList.toggle('show');
     });
 </script>
