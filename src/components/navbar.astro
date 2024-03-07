@@ -78,7 +78,7 @@ import { AE } from 'country-flag-icons/react/3x2'
     }
 
     .small-navbar {
-        height: 70px;
+        height: 75px;
     }
 
     .small-logo {
@@ -122,7 +122,32 @@ import { AE } from 'country-flag-icons/react/3x2'
             flex-direction: row-reverse;
         }
     }
-    @media (max-width: 640px) { /* Adjust this value as needed */
+
+
+
+    @media (min-width: 641px) and (max-width: 1024px) { /* Adjust these values as needed */
+    #navbar {
+        height: 85px; /* Adjust as needed */
+    }
+
+    #logo {
+        height: 70px; /* Adjust as needed */
+        width: auto;
+    }
+}
+
+
+    @media (max-width: 640px) {
+        
+        #navbar {
+            height: 75px;
+        }
+        
+        #logo {
+            height: 50px;
+            width: auto;
+        }
+
         #language-items {
             width: 100%;
             justify-content: space-between;
@@ -238,15 +263,15 @@ import { AE } from 'country-flag-icons/react/3x2'
     })();
 
     document.getElementById('navbar-items').addEventListener('click', (event) => {
-    const target = event.target as Element;
-    if (target.tagName === 'A') {
-        const activeLink = document.querySelector('.active-link');
-        if (activeLink) {
-            activeLink.classList.remove('active-link');
+        const target = event.target as Element;
+        if (target.tagName === 'A') {
+            const activeLink = document.querySelector('.active-link');
+            if (activeLink) {
+                activeLink.classList.remove('active-link');
+            }
+            target.classList.add('active-link');
         }
-        target.classList.add('active-link');
-    }
-});
+    });
 
     document.getElementById('hamburger').addEventListener('click', () => {
         document.getElementById('navbar-items').classList.toggle('show');
