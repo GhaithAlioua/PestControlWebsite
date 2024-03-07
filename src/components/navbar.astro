@@ -7,6 +7,7 @@ import { AE } from 'country-flag-icons/react/3x2'
     #languageLink {
         cursor: pointer;
     }
+
     .font-roboto {
       font-family: 'Roboto', sans-serif;
     }
@@ -76,7 +77,18 @@ import { AE } from 'country-flag-icons/react/3x2'
         cursor: pointer; /* Add this line */
     }
 
+    .small-navbar {
+        height: 70px;
+    }
 
+    .small-logo {
+        height: 50px;
+        width: auto;
+    }
+
+    .active-link {
+        color: #4CAF50;
+    }
 
     /* Responsive Navbar Design */
     /* CSS for the new containers */
@@ -188,44 +200,55 @@ import { AE } from 'country-flag-icons/react/3x2'
     }
     const activeLink = links[window.location.pathname];
     if(activeLink){
-        activeLink.classList.add('text-green-500');
+        activeLink.classList.add('active-link');
     }
 
     const navbar = document.getElementById('navbar');
     const logo = document.getElementById('logo');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 0) {
-            navbar.classList.add('h-20');
-            navbar.classList.remove('h-28');
-            logo.classList.add('h-16', 'w-34');
-            logo.classList.remove('h-20', 'w-42');
+            navbar.classList.add('small-navbar');
+            logo.classList.add('small-logo');
         } else {
-            navbar.classList.remove('h-20');
-            navbar.classList.add('h-28');
-            logo.classList.remove('h-16', 'w-34');
-            logo.classList.add('h-20', 'w-42');
+            navbar.classList.remove('small-navbar');
+            logo.classList.remove('small-logo');
         }
     });
 
-    let currentLanguage = 'English';
-    function changeLanguage(event, language) {
-        event.preventDefault();
-        const languageLinkText = document.querySelector('#languageLink .language-text');
-        const dropdownLinkText = document.querySelector('.dropdown-link .language-text');
+    const languageManager = (() => {
+        let currentLanguage = 'English';
 
-        // Swap the languages
-        const temp = currentLanguage;
-        currentLanguage = language;
-        language = temp;
+        return {
+            changeLanguage: (event, language) => {
+                event.preventDefault();
+                const languageLinkText = document.querySelector('#languageLink .language-text');
+                const dropdownLinkText = document.querySelector('.dropdown-link .language-text');
 
-        // Update the text of the links
-        languageLinkText.textContent = currentLanguage;
-        dropdownLinkText.textContent = language;
+                // Swap the languages
+                const temp = currentLanguage;
+                currentLanguage = language;
+                language = temp;
+
+                // Update the text of the links
+                languageLinkText.textContent = currentLanguage;
+                dropdownLinkText.textContent = language;
+            },
+            getCurrentLanguage: () => currentLanguage
+        };
+    })();
+
+    document.getElementById('navbar-items').addEventListener('click', (event) => {
+    const target = event.target as Element;
+    if (target.tagName === 'A') {
+        const activeLink = document.querySelector('.active-link');
+        if (activeLink) {
+            activeLink.classList.remove('active-link');
+        }
+        target.classList.add('active-link');
     }
+});
 
-
-    function toggleNavbar() {
-        const navbarItems = document.getElementById('navbar-items');
-        navbarItems.classList.toggle('show');
-    }
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navbar-items').classList.toggle('show');
+    });
 </script>
