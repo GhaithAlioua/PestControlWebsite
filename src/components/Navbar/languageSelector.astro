@@ -3,8 +3,8 @@ import { US } from "country-flag-icons/react/3x2";
 import { AE } from "country-flag-icons/react/3x2";
 
 const languages = [
-    { code: 'EN', flag: US, name: 'EN' },
-    { code: 'AR', flag: AE, name: 'AR' }
+    { code: 'EN', flag: 'US', name: 'en' },
+    { code: 'AR', flag: 'AE', name: 'ar' }
 ];
 let selectedLanguage = languages[0]; // Default language is English
 ---
@@ -95,7 +95,7 @@ let selectedLanguage = languages[0]; // Default language is English
     <button id="menu-button" onclick="toggleCaret()">
         <div class="flag-container">
             <div class="flag">
-                {selectedLanguage.flag === US ? <US /> : <AE />}
+                {selectedLanguage.flag === 'US' ? <US /> : <AE />}
             </div>
             <div class="flag-code">
                 <span>{selectedLanguage.code}</span>
@@ -108,7 +108,7 @@ let selectedLanguage = languages[0]; // Default language is English
     <div id="menu" class="menu">
         {languages.filter(lang => lang !== selectedLanguage).map(lang => (
             <div class="menu-item" data-lang={lang.code}>
-                <div class="flag">{lang.flag === US ? <US /> : <AE />}</div>
+                <div class="flag">{lang.flag === 'US' ? <US /> : <AE />}</div>
                 <div class="name">{lang.code}</div>
             </div>
         ))}
