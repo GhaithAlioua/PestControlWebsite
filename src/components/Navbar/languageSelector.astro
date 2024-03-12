@@ -129,6 +129,14 @@ let selectedLanguage = languages[0]; // Default language is English
             menu.classList.remove('show');
             document.getElementById('caret-icon').classList.remove('rotated');
         });
+
+        // Add event listener to each menu item
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('Menu item clicked!');
+            });
+        });
     };
 
     function toggleCaret() {
