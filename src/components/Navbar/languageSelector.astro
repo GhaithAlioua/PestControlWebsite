@@ -1,0 +1,46 @@
+---
+import { US } from "country-flag-icons/react/3x2";
+import { AE } from "country-flag-icons/react/3x2";
+
+const languages = [
+    { code: 'EN', flag: US, name: 'English' },
+    { code: 'AR', flag: AE, name: 'Arabic' }
+];
+let selectedLanguage = languages[0]; // Default language is English
+---
+
+<style>
+    .language-selector {
+        margin-right: 50px;
+    }
+
+    .flag-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .flag {
+        display: flex;
+        width: 22px;
+        height: auto;
+    }
+
+    .flag-code {
+        display: flex;
+        margin-left: 5px;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+
+<div class="language-selector">
+    <button>
+        <div class="flag-container">
+            <div class="flag">
+                {selectedLanguage.flag === US ? <US /> : <AE />}
+            </div>
+            <div class="flag-code">
+                <span>{selectedLanguage.code}</span>
+            </div>
+        </div>
+    </button>
+</div>

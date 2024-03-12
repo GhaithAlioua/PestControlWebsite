@@ -7,16 +7,23 @@
 </button>
 
 <style>
-#pageUpButton {
-    transition: opacity 0.5s;
-    pointer-events: none;
-}
+    #pageUpButton {
+        transition: opacity 0.5s;
+        pointer-events: none;
+    }
 
-#pageUpButton.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
+    #pageUpButton.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    @media (max-width: 640px) {
+        #pageUpButton {
+            display: none;
+        }
+    }
 </style>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
