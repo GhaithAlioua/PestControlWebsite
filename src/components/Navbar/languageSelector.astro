@@ -3,8 +3,8 @@ import { US } from "country-flag-icons/react/3x2";
 import { AE } from "country-flag-icons/react/3x2";
 
 const languages = [
-    { code: 'EN', flag: US, name: 'English' },
-    { code: 'AR', flag: AE, name: 'Arabic' }
+    { code: 'EN', flag: US, name: 'EN' },
+    { code: 'AR', flag: AE, name: 'AR' }
 ];
 let selectedLanguage = languages[0]; // Default language is English
 ---
@@ -12,6 +12,8 @@ let selectedLanguage = languages[0]; // Default language is English
 <style>
     .language-selector {
         margin-right: 50px;
+        position: relative;
+        font-family: 'Roboto', sans-serif;
     }
 
     .flag-container {
@@ -28,12 +30,69 @@ let selectedLanguage = languages[0]; // Default language is English
     .flag-code {
         display: flex;
         margin-left: 5px;
-        font-family: 'Roboto', sans-serif;
+    }
+
+    .caret {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+    }
+
+    .caret .fas {
+        color: black;
+        transition: transform 0.3s ease;
+    }
+
+    .caret .fas.rotated {
+        transform: rotate(180deg);
+    }
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+        width: auto;
+    }
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        color: black;
+    }
+
+    .menu-item:hover {
+        background-color: #f1f1f1;
+    }
+
+    .menu-item:hover .name {
+        color: #10B981;
+        transition: all 0.3s ease;
+    }
+
+    .menu-item .flag {
+        width: 22px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .menu.show {
+        display: block;
+    }
+
+    #menu-button:hover .flag-code,
+    #menu-button:hover .caret .fas {
+        color: #10B981;
+        transition: all 0.3s ease;
     }
 </style>
 
 <div class="language-selector">
-    <button>
+    <button id="menu-button" onclick="toggleCaret()">
         <div class="flag-container">
             <div class="flag">
                 {selectedLanguage.flag === US ? <US /> : <AE />}
@@ -41,6 +100,47 @@ let selectedLanguage = languages[0]; // Default language is English
             <div class="flag-code">
                 <span>{selectedLanguage.code}</span>
             </div>
+            <div class="caret">
+                <i class="fas fa-caret-down" id="caret-icon"></i>
+            </div>
         </div>
     </button>
+    <div id="menu" class="menu">
+        {languages.filter(lang => lang !== selectedLanguage).map(lang => (
+            <div class="menu-item" data-lang={lang.code}>
+                <div class="flag">{lang.flag === US ? <US /> : <AE />}</div>
+                <div class="name">{lang.code}</div>
+            </div>
+        ))}
+    </div>
 </div>
+
+<script type="text/javascript">
+    window.onload = function() {
+        const menuButton = document.getElementById('menu-button');
+        const menu = document.getElementById('menu');
+
+        menuButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            menu.classList.toggle('show');
+        });
+
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const langCode = this.getAttribute('data-lang');
+                selectedLanguage = languages.find(lang => lang.code === langCode);
+                // Update the UI...
+            });
+        });
+
+        document.addEventListener('click', function() {
+            menu.classList.remove('show');
+            document.getElementById('caret-icon').classList.remove('rotated');
+        });
+    };
+
+    function toggleCaret() {
+        document.getElementById('caret-icon').classList.toggle('rotated');
+    }
+</script>
