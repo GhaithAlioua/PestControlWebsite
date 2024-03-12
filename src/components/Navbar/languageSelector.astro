@@ -125,15 +125,6 @@ let selectedLanguage = languages[0]; // Default language is English
             menu.classList.toggle('show');
         });
 
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const langCode = this.getAttribute('data-lang');
-                selectedLanguage = languages.find(lang => lang.code === langCode);
-                // Update the UI...
-            });
-        });
-
         document.addEventListener('click', function() {
             menu.classList.remove('show');
             document.getElementById('caret-icon').classList.remove('rotated');
