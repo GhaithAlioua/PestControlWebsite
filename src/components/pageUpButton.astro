@@ -2,14 +2,24 @@
 // No imports as of yet.
 ---
 
-<button id="pageUpButton" class="fixed bottom-10 right-6 bg-green-500 text-white font-bold py-2 px-3 rounded-full opacity-0 transition-opacity duration-500">
-    <i class="fas fa-arrow-up fa-lg"></i>
+<button id="pageUpButton">
+    <i class="fas fa-arrow-up"></i>
 </button>
 
 <style>
     #pageUpButton {
+        position: fixed;
+        bottom: 5.5rem;
+        right: 0rem;
+        background-color: #10B981;
+        color: white;
+        opacity: 0;
         transition: opacity 0.5s;
         pointer-events: none;
+        width: 40px; /* Adjust as needed */
+        height: 40px; /* Adjust as needed */
+        border-top-left-radius: 5px; /* Adjust as needed */
+        border-bottom-left-radius: 5px; /* Adjust as needed */
     }
 
     #pageUpButton.visible {
@@ -22,10 +32,15 @@
             display: none;
         }
     }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+        #pageUpButton {
+            display: none;
+        }
+    }
 </style>
 
-
-<script>
+<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
     const pageUpButton = document.getElementById('pageUpButton');
 

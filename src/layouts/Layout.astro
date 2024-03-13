@@ -1,9 +1,8 @@
 ---
-// Imports
 import Navbar from '../components/Navbar/newNavbar.astro'
-//import Navbar from '../components/navbar.astro'
 import PageUpButton from '../components/pageUpButton.astro'
 // import HamburgerButton from '../components/hamburgerMenu.astro'
+import Footer from '../components/footer.astro'
 
 //import ChatButton from '../components/chatButton.astro'
 
@@ -29,5 +28,6 @@ let showNavbar = Astro.props.showNavbar ?? true;
     <slot /> <!-- This is where the content of your pages will be injected -->
     <!-- <ChatButton /> -->
     <PageUpButton />
+    <Footer />
   </body>
 </html>
