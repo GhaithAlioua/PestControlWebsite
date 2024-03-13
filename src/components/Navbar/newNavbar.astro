@@ -58,6 +58,36 @@ import LanguageSelector from "./languageSelector.astro";
         color: #10B981;
     }
 
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown .caret i {
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover .caret i {
+        transform: rotate(180deg);
+    }
+    
+
     @media (min-width: 1024px) {
         nav {
             height: 105px;
@@ -112,7 +142,23 @@ import LanguageSelector from "./languageSelector.astro";
     </a>
     <div class="nav-items">
         {navbarItems.map(item => (
-            <a href={item.link}>{item.name}</a>
+            item.name === 'SERVICES' ? (
+                <div class="dropdown">
+                    <a href={item.link}>
+                        {item.name}
+                        <span class="caret">
+                            <i class="fas fa-caret-down" id="services-caret-icon"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-content">
+                        {servicesSubItems.map(subItem => (
+                            <a href={subItem.link}>{subItem.name}</a>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <a href={item.link}>{item.name}</a>
+            )
         ))}
     </div>
     <LanguageSelector />
